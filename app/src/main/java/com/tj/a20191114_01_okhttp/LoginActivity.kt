@@ -1,5 +1,6 @@
 package com.tj.a20191114_01_okhttp
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -20,6 +21,12 @@ class LoginActivity : BaseActivity() {
     }
 
     override fun setupEvent() {
+        signUpBtn.setOnClickListener {
+            var intent = Intent(mContext, SignUpActivity::class.java)
+
+            startActivity(intent)
+        }
+
         loginBtn.setOnClickListener {
 
             var inputId = loginIdTxt.text.toString()
@@ -41,7 +48,7 @@ class LoginActivity : BaseActivity() {
                             val data = json.getJSONObject("data")
                             val user = data.getJSONObject("user")
                             var name = user.getString("name")
-                            Toast.makeText(mContext, "${name}님 로그인 성공", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(mContext, "${name}님 환영합니다.", Toast.LENGTH_SHORT).show()
                         }
                     }
                 }
